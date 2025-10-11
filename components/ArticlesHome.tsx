@@ -100,6 +100,8 @@ const ArticlesHome = () => {
     centerPadding: "0px",
     autoplay: false,
     arrows: true,
+    variableWidth: false, // importante
+    adaptiveHeight: true, // evita que se rompa en móviles
     responsive: [
       {
         breakpoint: 1024,
@@ -107,9 +109,10 @@ const ArticlesHome = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "20px",
+          centerPadding: "10px",
           arrows: true,
           variableWidth: false,
+          adaptiveHeight: true,
         },
       },
       {
@@ -117,14 +120,16 @@ const ArticlesHome = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerMode: false,
+          centerMode: false, // no centrar en móviles
           centerPadding: "0px",
           arrows: false,
           variableWidth: false,
+          adaptiveHeight: true,
         },
       },
     ],
   };
+
 
 
   return (
@@ -159,7 +164,7 @@ const ArticlesHome = () => {
         return (
           <motion.div
             key={category}
-            className="max-w-7xl mx-auto mb-20"
+            className="w-full mb-20"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.2, duration: 0.6 }}
@@ -170,7 +175,7 @@ const ArticlesHome = () => {
 
             <Slider {...settings}>
               {filtered.map((article) => (
-                <div key={article.id} className="px-3">
+                <div key={article.id} className="px-2 w-full">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
