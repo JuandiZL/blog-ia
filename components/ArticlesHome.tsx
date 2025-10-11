@@ -102,25 +102,30 @@ const ArticlesHome = () => {
     arrows: true,
     responsive: [
       {
-        breakpoint: 1024, // tablets
+        breakpoint: 1024,
         settings: {
           slidesToShow: 2,
+          slidesToScroll: 1,
           centerMode: true,
           centerPadding: "20px",
+          arrows: true,
+          variableWidth: false,
         },
       },
       {
-        breakpoint: 768, // móviles grandes y pequeños
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
           centerMode: false,
           centerPadding: "0px",
-          arrows: false, // opcional: quitar flechas en móviles
+          arrows: false,
+          variableWidth: false,
         },
       },
     ],
   };
+
 
   return (
     <div
