@@ -1,11 +1,14 @@
 "use client";
+
+import dynamic from "next/dynamic";
 import React from "react";
-import Slider from "react-slick";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 const articlesData = [
   {
@@ -20,11 +23,11 @@ const articlesData = [
   },
   {
     id: 2,
-    title: "Computación Cuantica en aplicaciones",
+    title: "Computación Cuantica",
     date: "12 Oct 2025",
     category: "Tecnología",
     description:
-      "Los científicos desarrollan nuevos materiales biodegradables con base en nanotecnología verde.",
+      "Los científicos desarrollan nuevos materiales con nanotecnología.",
     image: "/images/PortadaArticuloComputacionCuantica.webp",
     link: "/articulos/Computacion-Cuantica-Aplicaciones",
   },
