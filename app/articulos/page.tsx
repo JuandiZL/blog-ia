@@ -1,14 +1,12 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ArticulosSection from "@/components/ArticulosSection";
+import ArticlesHome from "@/components/ArticlesHome";
 
 export default function ArticulosPage() {
   return (
     <>
       <Header />
-      <main>
-        <ArticulosSection />
-      </main>
+      <ArticlesHome />
       <Footer />
     </>
   );
