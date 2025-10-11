@@ -30,7 +30,7 @@ export default function HomeSection() {
       {/* Contenido */}
       <div className="relative z-10 flex flex-col items-center justify-center w-full px-4 sm:px-6 lg:px-8 text-center py-20 md:py-32">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 leading-tight tracking-tight">
-          Blog IA — <span className="text-blue-400">Ideas que Transforman</span>
+          Novedades — <span className="text-blue-400">Ideas que Transforman</span>
         </h1>
 
         <div className="w-full max-w-3xl border border-gray-800 rounded-2xl p-6 sm:p-8 bg-black/50 backdrop-blur-sm shadow-2xl hover:shadow-blue-500/10 transition-all duration-300">
