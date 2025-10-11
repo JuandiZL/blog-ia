@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import HomeSection from "@/components/HomeSection";
+import ComoLaIATransformaNegocios2025 from "@/components/articulos/como-la-ia-transforma-negocios-2025";
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
     </div>
 
       <div>
-        <HomeSection />
+        <ComoLaIATransformaNegocios2025 />
       </div>
 
     <div>
