@@ -102,6 +102,8 @@ const ArticlesHome = () => {
         breakpoint: 1024, // tablets
         settings: {
           slidesToShow: 2,
+          centerMode: true,
+          centerPadding: "0px",
         },
       },
       {
@@ -109,6 +111,7 @@ const ArticlesHome = () => {
         settings: {
           slidesToShow: 1,
           centerMode: false,
+          centerPadding: "0px",
         },
       },
     ],
