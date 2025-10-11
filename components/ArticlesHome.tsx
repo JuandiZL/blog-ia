@@ -103,11 +103,11 @@ const ArticlesHome = () => {
         settings: {
           slidesToShow: 2,
           centerMode: true,
-          centerPadding: "0px",
+          centerPadding: "20px",
         },
       },
       {
-        breakpoint: 768, // celulares
+        breakpoint: 640, // móviles
         settings: {
           slidesToShow: 1,
           centerMode: false,
