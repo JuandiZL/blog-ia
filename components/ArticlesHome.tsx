@@ -110,11 +110,13 @@ const ArticlesHome = () => {
         },
       },
       {
-        breakpoint: 640, // móviles
+        breakpoint: 768, // móviles grandes y pequeños
         settings: {
           slidesToShow: 1,
+          slidesToScroll: 1,
           centerMode: false,
           centerPadding: "0px",
+          arrows: false, // opcional: quitar flechas en móviles
         },
       },
     ],
