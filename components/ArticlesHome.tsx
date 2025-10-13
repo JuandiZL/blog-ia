@@ -23,11 +23,11 @@ const articlesData = [
   },
   {
     id: 2,
-    title: "Computación Cuantica",
+    title: "Computación Cuántica",
     date: "12 Oct 2025",
     category: "Tecnología",
     description:
-      "Los científicos desarrollan nuevos materiales con nanotecnología.",
+      "Los científicos desarrollan nuevos materiales con base en nanotecnología.",
     image: "/images/PortadaArticuloComputacionCuantica.webp",
     link: "/articulos/Computacion-Cuantica-Aplicaciones",
   },
@@ -89,7 +89,6 @@ const getArticlesByCategory = (category: string) =>
 const ArticlesHome = () => {
   const categories = ["Tecnología", "Ciencia", "Salud", "Deportes", "Política"];
 
-
   const settings = {
     dots: false,
     infinite: true,
@@ -100,19 +99,14 @@ const ArticlesHome = () => {
     centerPadding: "0px",
     autoplay: false,
     arrows: true,
-    variableWidth: false, // importante
-    adaptiveHeight: true, // evita que se rompa en móviles
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "10px",
+          centerMode: false,
           arrows: true,
-          variableWidth: false,
-          adaptiveHeight: true,
         },
       },
       {
@@ -120,17 +114,12 @@ const ArticlesHome = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerMode: false, // no centrar en móviles
-          centerPadding: "0px",
+          centerMode: false,
           arrows: false,
-          variableWidth: false,
-          adaptiveHeight: true,
         },
       },
     ],
   };
-
-
 
   return (
     <div
@@ -141,18 +130,13 @@ const ArticlesHome = () => {
         backgroundPosition: "center",
         color: "white",
       }}
-      className="min-h-screen py-20 px-6"
+      className="min-h-screen py-20 px-4 md:px-10"
     >
       <motion.h2
-        className="text-4xl md:text-5xl font-extrabold mb-8 text-center bg-gradient-to-r from-cyan-400 to-blue-600 text-transparent bg-clip-text"
-        initial={{ opacity: 0, scale: 0.8, rotateX: 30 }}
-        animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-        transition={{ duration: 1, ease: 'easeOut' }}
-        whileHover={{
-          scale: 1.03,
-          rotateX: 5,
-          transition: { duration: 0.4 },
-        }}
+        className="text-4xl md:text-5xl font-extrabold mb-16 text-center bg-gradient-to-r from-cyan-400 to-blue-600 text-transparent bg-clip-text"
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
       >
         Explora el Conocimiento por Sectores
       </motion.h2>
@@ -169,7 +153,7 @@ const ArticlesHome = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.2, duration: 0.6 }}
           >
-            <h3 className="text-3xl font-semibold border-l-4 border-indigo-500 pl-4 mb-8">
+            <h3 className="text-2xl md:text-3xl font-semibold border-l-4 border-indigo-500 pl-4 mb-8">
               {category}
             </h3>
 
@@ -177,31 +161,33 @@ const ArticlesHome = () => {
               {filtered.map((article) => (
                 <div key={article.id} className="px-2 w-full">
                   <motion.div
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.04 }}
                     transition={{ duration: 0.3 }}
-                    className="bg-white/10 border border-white/10 backdrop-blur-lg rounded-2xl overflow-hidden shadow-lg"
+                    className="bg-white/10 border border-white/10 backdrop-blur-lg rounded-2xl overflow-hidden shadow-lg flex flex-col h-full"
                   >
                     <Link href={article.link}>
                       <div className="relative group">
                         <img
                           src={article.image}
                           alt={article.title}
-                          className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         <div className="absolute top-3 left-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full font-semibold">
                           {article.category}
                         </div>
                       </div>
-                      <div className="p-5">
-                        <h4 className="text-lg font-semibold mb-1">
-                          {article.title}
-                        </h4>
-                        <p className="text-sm text-gray-300 mb-2">
-                          {article.date}
-                        </p>
-                        <p className="text-gray-200 text-sm mb-3 leading-relaxed">
-                          {article.description}
-                        </p>
+                      <div className="p-5 flex flex-col justify-between h-full">
+                        <div>
+                          <h4 className="text-lg font-semibold mb-1">
+                            {article.title}
+                          </h4>
+                          <p className="text-sm text-gray-300 mb-2">
+                            {article.date}
+                          </p>
+                          <p className="text-gray-200 text-sm mb-3 leading-relaxed line-clamp-3">
+                            {article.description}
+                          </p>
+                        </div>
                         <span className="text-indigo-400 hover:text-indigo-300 text-sm font-medium">
                           Leer más →
                         </span>
@@ -219,11 +205,16 @@ const ArticlesHome = () => {
         .slick-prev:before,
         .slick-next:before {
           color: #818cf8 !important;
-          font-size: 30px;
+          font-size: 28px;
         }
         .slick-slide {
           display: flex !important;
           justify-content: center;
+        }
+        @media (max-width: 768px) {
+          .slick-slide > div {
+            padding: 0 8px;
+          }
         }
       `}</style>
     </div>
