@@ -27,7 +27,7 @@ const articlesData = [
     date: "12 Oct 2025",
     category: "Tecnología",
     description:
-      "Los científicos desarrollan nuevos materiales biodegradables con nanotecnología.",
+      "Los científicos desarrollan nuevos materiales con nanotecnología.",
     image: "/images/PortadaArticuloComputacionCuantica.webp",
     link: "/articulos/Computacion-Cuantica-Aplicaciones",
   },
@@ -90,34 +90,47 @@ const ArticlesHome = () => {
   const categories = ["Tecnología", "Ciencia", "Salud", "Deportes", "Política"];
 
 
-    const settings = {
-      dots: false,
-      infinite: true,
-      speed: 600,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      centerMode: false,
-      arrows: true,
-      variableWidth: false,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            arrows: true,
-          },
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: "0px",
+    autoplay: false,
+    arrows: true,
+    variableWidth: false, // importante
+    adaptiveHeight: true, // evita que se rompa en móviles
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: "10px",
+          arrows: true,
+          variableWidth: false,
+          adaptiveHeight: true,
         },
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-          },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: false, // no centrar en móviles
+          centerPadding: "0px",
+          arrows: false,
+          variableWidth: false,
+          adaptiveHeight: true,
         },
-      ],
-    };
+      },
+    ],
+  };
+
+
 
   return (
     <div
@@ -134,7 +147,12 @@ const ArticlesHome = () => {
         className="text-4xl md:text-5xl font-extrabold mb-8 text-center bg-gradient-to-r from-cyan-400 to-blue-600 text-transparent bg-clip-text"
         initial={{ opacity: 0, scale: 0.8, rotateX: 30 }}
         animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+        whileHover={{
+          scale: 1.03,
+          rotateX: 5,
+          transition: { duration: 0.4 },
+        }}
       >
         Explora el Conocimiento por Sectores
       </motion.h2>
@@ -146,7 +164,7 @@ const ArticlesHome = () => {
         return (
           <motion.div
             key={category}
-            className="w-full mb-20"
+            className="w-full mb-20 overflow-hidden"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.2, duration: 0.6 }}
@@ -157,11 +175,7 @@ const ArticlesHome = () => {
 
             <Slider {...settings}>
               {filtered.map((article) => (
-                <div
-                  key={article.id}
-                  className="px-2"
-                  style={{ width: "100%" }} // importante: width dinámico
-                >
+                <div key={article.id} className="px-2 w-full">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
@@ -172,7 +186,7 @@ const ArticlesHome = () => {
                         <img
                           src={article.image}
                           alt={article.title}
-                          className="w-full h-48 sm:h-56 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         <div className="absolute top-3 left-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full font-semibold">
                           {article.category}
@@ -200,6 +214,18 @@ const ArticlesHome = () => {
           </motion.div>
         );
       })}
+
+      <style jsx>{`
+        .slick-prev:before,
+        .slick-next:before {
+          color: #818cf8 !important;
+          font-size: 30px;
+        }
+        .slick-slide {
+          display: flex !important;
+          justify-content: center;
+        }
+      `}</style>
     </div>
   );
 };
