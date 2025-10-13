@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -47,7 +46,7 @@ const articlesData = [
     date: "07 Oct 2025",
     category: "Deportes",
     description:
-      "Los equipos de élite ahora usan algoritmos para predecir lesiones y optimizar entrenamientos.",
+      "Los equipos de élite usan algoritmos para predecir lesiones y optimizar entrenamientos.",
     image: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1",
     link: "/articulos/deporte-y-tecnologia",
   },
@@ -55,7 +54,7 @@ const articlesData = [
     id: 5,
     title: "Robótica y el empleo del futuro",
     date: "05 Oct 2025",
-    category: "Tecnología",
+    category: "Ciencia",
     description:
       "Cómo la automatización reconfigura el trabajo y abre nuevas oportunidades globales.",
     image: "https://images.unsplash.com/photo-1529101091764-c3526daf38fe",
@@ -63,23 +62,23 @@ const articlesData = [
   },
   {
     id: 6,
-    title: "Rfdfdfdfuturo",
-    date: "05 Oct 2025",
+    title: "asddddddddddddddddddddddddddddd",
+    date: "07 Oct 2025",
     category: "Tecnología",
     description:
-      "Cómo la automatización reconfigura el trabajo y abre nuevas oportunidades globales.",
-    image: "https://images.unsplash.com/photo-1581091215367-59ab6c1a8c94",
-    link: "/articulos/robotica-empleo",
+      "Los equipos de élite usan algoritmos para predecir lesiones y optimizar entrenamientos.",
+    image: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1",
+    link: "/articulos/deporte-y-tecnologia",
   },
   {
     id: 7,
-    title: "Robótica y el empleo del futuro",
-    date: "05 Oct 2025",
-    category: "Ciencia",
+    title: "asddddddddddddddddddddddddddddd",
+    date: "07 Oct 2025",
+    category: "Tecnología",
     description:
-      "Cómo la automatización reconfigura el trabajo y abre nuevas oportunidades globales.",
-    image: "https://images.unsplash.com/photo-1581091215367-59ab6c1a8c94",
-    link: "/articulos/robotica-empleo",
+      "Los equipos de élite usan algoritmos para predecir lesiones y optimizar entrenamientos.",
+    image: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1",
+    link: "/articulos/deporte-y-tecnologia",
   },
 ];
 
@@ -87,7 +86,7 @@ const getArticlesByCategory = (category: string) =>
   articlesData.filter((a) => a.category === category);
 
 const ArticlesHome = () => {
-  const categories = ["Tecnología", "Ciencia", "Salud", "Deportes", "Política"];
+  const categories = ["Tecnología", "Ciencia", "Salud", "Deportes"];
 
   const settings = {
     dots: false,
@@ -95,28 +94,18 @@ const ArticlesHome = () => {
     speed: 600,
     slidesToShow: 3,
     slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: "0px",
     autoplay: false,
     arrows: true,
+    centerMode: true,
+    centerPadding: "0px",
     responsive: [
       {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          centerMode: false,
-          arrows: true,
-        },
+        breakpoint: 1280,
+        settings: { slidesToShow: 2 },
       },
       {
         breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: false,
-          arrows: false,
-        },
+        settings: { slidesToShow: 1, arrows: false, centerMode: false },
       },
     ],
   };
@@ -128,9 +117,8 @@ const ArticlesHome = () => {
           "linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.95)), url('https://images.unsplash.com/photo-1531297484001-80022131f5a1')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        color: "white",
       }}
-      className="min-h-screen py-20 px-4 md:px-10"
+      className="min-h-screen py-20 px-4 md:px-12 text-white flex flex-col items-center"
     >
       <motion.h2
         className="text-4xl md:text-5xl font-extrabold mb-16 text-center bg-gradient-to-r from-cyan-400 to-blue-600 text-transparent bg-clip-text"
@@ -148,55 +136,57 @@ const ArticlesHome = () => {
         return (
           <motion.div
             key={category}
-            className="w-full mb-20 overflow-hidden"
+            className="w-full max-w-7xl mb-20 text-center"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.2, duration: 0.6 }}
           >
-            <h3 className="text-2xl md:text-3xl font-semibold border-l-4 border-indigo-500 pl-4 mb-8">
+            <h3 className="text-2xl md:text-3xl font-semibold border-l-4 border-indigo-500 pl-4 mb-10 text-left md:text-center mx-auto w-fit">
               {category}
             </h3>
 
-            <Slider {...settings}>
-              {filtered.map((article) => (
-                <div key={article.id} className="px-2 w-full">
-                  <motion.div
-                    whileHover={{ scale: 1.04 }}
-                    transition={{ duration: 0.3 }}
-                    className="bg-white/10 border border-white/10 backdrop-blur-lg rounded-2xl overflow-hidden shadow-lg flex flex-col h-full"
-                  >
-                    <Link href={article.link}>
-                      <div className="relative group">
-                        <img
-                          src={article.image}
-                          alt={article.title}
-                          className="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                        <div className="absolute top-3 left-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full font-semibold">
-                          {article.category}
+            <div className="relative">
+              <Slider {...settings}>
+                {filtered.map((article) => (
+                  <div key={article.id} className="px-3 flex justify-center">
+                    <motion.div
+                      whileHover={{ scale: 1.04 }}
+                      transition={{ duration: 0.3 }}
+                      className="bg-white/10 border border-white/10 backdrop-blur-lg rounded-2xl overflow-hidden shadow-lg w-[90%] max-w-sm flex flex-col"
+                    >
+                      <Link href={article.link}>
+                        <div className="relative group">
+                          <img
+                            src={article.image}
+                            alt={article.title}
+                            className="w-full h-44 md:h-52 object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute top-3 left-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full font-semibold">
+                            {article.category}
+                          </div>
                         </div>
-                      </div>
-                      <div className="p-5 flex flex-col justify-between h-full">
-                        <div>
-                          <h4 className="text-lg font-semibold mb-1">
-                            {article.title}
-                          </h4>
-                          <p className="text-sm text-gray-300 mb-2">
-                            {article.date}
-                          </p>
-                          <p className="text-gray-200 text-sm mb-3 leading-relaxed line-clamp-3">
-                            {article.description}
-                          </p>
+                        <div className="p-5 flex flex-col justify-between flex-grow">
+                          <div>
+                            <h4 className="text-lg font-semibold mb-1 line-clamp-2">
+                              {article.title}
+                            </h4>
+                            <p className="text-sm text-gray-300 mb-2">
+                              {article.date}
+                            </p>
+                            <p className="text-gray-200 text-sm mb-3 leading-relaxed line-clamp-3">
+                              {article.description}
+                            </p>
+                          </div>
+                          <span className="text-indigo-400 hover:text-indigo-300 text-sm font-medium">
+                            Leer más →
+                          </span>
                         </div>
-                        <span className="text-indigo-400 hover:text-indigo-300 text-sm font-medium">
-                          Leer más →
-                        </span>
-                      </div>
-                    </Link>
-                  </motion.div>
-                </div>
-              ))}
-            </Slider>
+                      </Link>
+                    </motion.div>
+                  </div>
+                ))}
+              </Slider>
+            </div>
           </motion.div>
         );
       })}
@@ -211,9 +201,13 @@ const ArticlesHome = () => {
           display: flex !important;
           justify-content: center;
         }
+        .slick-track {
+          display: flex !important;
+          align-items: stretch;
+        }
         @media (max-width: 768px) {
           .slick-slide > div {
-            padding: 0 8px;
+            padding: 0 6px;
           }
         }
       `}</style>
