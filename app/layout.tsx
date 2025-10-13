@@ -29,6 +29,7 @@ export default function RootLayout({
           name="google-site-verification"
           content="53Hnodfn-u4-7b6_FvgaTxJOIHFwVaCo3tHp1WvIhVo"
         />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5114315414587083" crossOrigin="anonymous"></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
