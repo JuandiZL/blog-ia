@@ -1,15 +1,22 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import NoticiasSection from "@/components/NoticiasSection";
+import HomeNewsHero from "@/components/HomeNoticiasInicio";
 
 export default function NoticiasPage() {
   return (
     <>
-      <Header />
-      <main>
-        <NoticiasSection />
-      </main>
-      <Footer />
+      <div>
+        <Header />
+      </div>
+
+      <div>
+        <HomeNewsHero />
+      </div>
+
+      <div>
+        <Footer />
+      </div>
+      
     </>
   );
 }

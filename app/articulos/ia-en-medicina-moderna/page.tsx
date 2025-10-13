@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import HomeSection from "@/components/HomeSection";
-import ArticulosTecnologiaHome from "@/components/SeccionArticulosTecnologia";
+import IaEnMedicinaModerna from "@/components/articulos/ia-en-medicina-moderna";
 
 export default function Home() {
   return (
@@ -11,11 +10,7 @@ export default function Home() {
     </div>
 
       <div>
-        <HomeSection />
-      </div>
-
-      <div>
-        <ArticulosTecnologiaHome />
+        <IaEnMedicinaModerna />
       </div>
 
     <div>

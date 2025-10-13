@@ -45,36 +45,6 @@ const articlesData = [
     image: "/images/PortadaElFuturoDelDeporteInteligente.webp",
     link: "/articulos/El-futuro-del-deporte-inteligente",
   },
-  {
-    id: 5,
-    title: "El big data en el deporte de élite",
-    date: "07 Oct 2025",
-    category: "Deportes",
-    description:
-      "Los equipos de élite usan algoritmos para predecir lesiones y optimizar entrenamientos.",
-    image: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1",
-    link: "/articulos/deporte-y-tecnologia",
-  },
-  {
-    id: 6,
-    title: "Robótica y el empleo del futuro",
-    date: "05 Oct 2025",
-    category: "Ciencia",
-    description:
-      "Cómo la automatización reconfigura el trabajo y abre nuevas oportunidades globales.",
-    image: "https://images.unsplash.com/photo-1529101091764-c3526daf38fe",
-    link: "/articulos/robotica-empleo",
-  },
-  {
-    id: 7,
-    title: "Nanotecnología y salud",
-    date: "09 Oct 2025",
-    category: "Ciencia",
-    description:
-      "Los avances en nanotecnología prometen tratamientos más eficaces y personalizados.",
-    image: "https://images.unsplash.com/photo-1624705002806-5e96a5b65c0b",
-    link: "/articulos/nanotecnologia-salud",
-  },
 ];
 
 const getArticlesByCategory = (category: string) =>
@@ -86,8 +56,8 @@ const categoryStyles: Record<string, string> = {
   Deportes: "border-yellow-400 text-yellow-400",
 };
 
-const ArticlesHome = () => {
-  const categories = ["Tecnología", "Ciencia", "Deportes"];
+const ArticulosTecnologiaHome = () => {
+  const categories = ["Tecnología"];
   const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({});
 
   const toggleCategory = (category: string) => {
@@ -96,34 +66,16 @@ const ArticlesHome = () => {
 
   return (
     <div
-      className="min-h-screen py-20 px-4 md:px-12 text-white"
+      className="min-h-screen py-20 px-4 md:px-12 text-white relative overflow-hidden"
       style={{
-        backgroundImage:
-          `
-          radial-gradient(circle at top left, rgba(89, 125, 163, 0.25), transparent 60%),
-          radial-gradient(circle at bottom right, rgba(12, 56, 133, 0.35), transparent 70%),
+        background: `
+          radial-gradient(circle at top left, rgba(10, 30, 53, 0.25), transparent 60%),
+          radial-gradient(circle at bottom right, rgba(0, 30, 80, 0.35), transparent 70%),
           linear-gradient(to bottom, rgba(5,10,25,0.95), rgba(0,0,0,0.98))
         `,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
       }}
     >
-      {/* 🔥 TÍTULO PRINCIPAL CON EFECTO GLOW Y ANIMACIÓN */}
-      <motion.h2
-        className="text-4xl md:text-5xl font-extrabold mb-16 text-center bg-gradient-to-r from-cyan-400 to-blue-600 text-transparent bg-clip-text drop-shadow-[0_0_15px_rgba(56,189,248,0.4)]"
-        initial={{ opacity: 0, y: -50, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{
-          duration: 0.5,
-          ease: "easeOut",
-        }}
-        whileHover={{
-          textShadow: "0px 0px 12px rgba(56,189,248,0.8)",
-          scale: 1.02,
-        }}
-      >
-        Explora el Conocimiento por Sectores
-      </motion.h2>
+      <div className="absolute inset-0 backdrop-blur-[2px] pointer-events-none"></div>
 
       {categories.map((category, i) => {
         const filtered = getArticlesByCategory(category);
@@ -133,12 +85,11 @@ const ArticlesHome = () => {
         return (
           <motion.div
             key={category}
-            className="w-full max-w-7xl mx-auto mb-20"
+            className="w-full max-w-7xl mx-auto mb-20 relative z-10"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1, duration: 0.4 }}
           >
-            {/* 💠 TÍTULO DE CATEGORÍA CON COLOR DIFERENCIADO */}
             <h3
               className={`text-2xl md:text-3xl font-semibold border-l-4 pl-4 mb-10 ${
                 categoryStyles[category] || "border-indigo-400 text-indigo-400"
@@ -147,7 +98,6 @@ const ArticlesHome = () => {
               {category}
             </h3>
 
-            {/* 🧩 GRID DE ARTÍCULOS CON ANIMACIONES FLUIDAS */}
             <motion.div
               layout
               transition={{
@@ -199,7 +149,6 @@ const ArticlesHome = () => {
               </AnimatePresence>
             </motion.div>
 
-            {/* 🚀 BOTÓN “VER MÁS” MÁS RESPONSIVO */}
             <div className="flex justify-center mt-10">
               <motion.button
                 whileTap={{ scale: 0.95 }}
@@ -217,4 +166,4 @@ const ArticlesHome = () => {
   );
 };
 
-export default ArticlesHome;
+export default ArticulosTecnologiaHome;
