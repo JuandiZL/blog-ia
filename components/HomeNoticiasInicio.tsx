@@ -6,61 +6,84 @@ import Link from "next/link";
 
 const HomeNewsHero = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const animationRef = useRef<number | null>(null);
+  const visible = useRef(true);
 
-  // Efecto de partículas animadas en el fondo (azules suaves)
+  // Efecto de partículas optimizado
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const devicePixelRatio = Math.min(window.devicePixelRatio, 1.5);
+    const numParticles = window.innerWidth < 768 ? 20 : 40;
     let particles: { x: number; y: number; r: number; dx: number; dy: number }[] = [];
-    const numParticles = 40;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const { innerWidth, innerHeight } = window;
+      canvas.width = innerWidth / devicePixelRatio;
+      canvas.height = innerHeight / devicePixelRatio;
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+
       particles = Array.from({ length: numParticles }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 2 + 0.5,
-        dx: (Math.random() - 0.5) * 0.3,
-        dy: (Math.random() - 0.5) * 0.3,
+        x: Math.random() * innerWidth,
+        y: Math.random() * innerHeight,
+        r: Math.random() * 1.8 + 0.6,
+        dx: (Math.random() - 0.5) * 0.45,
+        dy: (Math.random() - 0.5) * 0.45,
       }));
     };
 
     const animate = () => {
-      if (!ctx) return;
+      if (!ctx || !visible.current) return;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p) => {
+      ctx.globalAlpha = 0.8;
+
+      for (const p of particles) {
         p.x += p.dx;
         p.y += p.dy;
 
-        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+        if (p.x < 0 || p.x > window.innerWidth) p.dx *= -1;
+        if (p.y < 0 || p.y > window.innerHeight) p.dy *= -1;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0, 150, 255, 0.25)";
+        ctx.fillStyle = "rgba(0,180,255,0.25)";
         ctx.fill();
-      });
-      requestAnimationFrame(animate);
+      }
+
+      animationRef.current = window.setTimeout(() => {
+        requestAnimationFrame(animate);
+      }, 20);
+    };
+
+    const handleVisibility = () => {
+      visible.current = !document.hidden;
     };
 
     resize();
     animate();
+
     window.addEventListener("resize", resize);
-    return () => window.removeEventListener("resize", resize);
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      if (animationRef.current) clearTimeout(animationRef.current);
+      window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
   }, []);
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black text-white">
-
+      {/* Fondo principal */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('/images/FondoHomeNoticias.webp",
+          backgroundImage: "url('/images/FondoHomeNoticias.webp')",
+          transform: "scale(1.05)",
         }}
       />
       <div className="absolute inset-0 bg-black/70 backdrop-blur-[1px]" />
@@ -72,15 +95,15 @@ const HomeNewsHero = () => {
 
       <motion.div
         className="relative z-10 text-center max-w-3xl px-6"
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <motion.h1
           className="text-4xl md:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 1 }}
+          transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
         >
           Explora el Futuro de las Noticias
         </motion.h1>
@@ -89,16 +112,16 @@ const HomeNewsHero = () => {
           className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
         >
           Tecnología, ciencia y avances que transforman el mundo.  
           Mantente al día con lo más reciente e innovador.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 1 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
         >
           <Link href="/articulos">
             <button className="px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-semibold rounded-full shadow-lg hover:shadow-cyan-400/40 transition-all duration-300">
