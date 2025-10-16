@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BlogIA | Noticias y articulos",
     description:
-      "Explora los avances más recientes de la inteligencia artificial, tecnologia, ciencia  y salud.",
+      "Explora los avances más recientes de la tecnologia, ciencia  y salud.",
     url: "https://news-juandizl.vercel.app/",
     siteName: "BlogIA",
     images: [
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/images/Logo.png",
   },
 };
 
