@@ -18,22 +18,22 @@ const viralData: ViralNews[] = [
     id: 1,
     title: "IA descubre nuevo biomarcador en el cerebro",
     date: "15 Oct 2025",
-    image: "/images/viral1.webp",
-    link: "/articulos/ia-biomarcador",
+    image: "/images/PortadaNoticiaBioMarcadorCerebral.webp",
+    link: "https://www.infobae.com/salud/ciencia/2025/09/10/descubren-un-marcador-cerebral-que-podria-anticipar-el-inicio-del-alzheimer/",
   },
   {
     id: 2,
     title: "Avances en neurofeedback deportivo con IA",
     date: "14 Oct 2025",
-    image: "/images/viral2.webp",
-    link: "/articulos/neurofeedback-deporte",
+    image: "/images/PortadaNoticiaNeuroFeedback.webp",
+    link: "https://trendsresearch.org/insight/cognitive-enhancement-through-ai-rewiring-the-brain-for-peak-performance/",
   },
   {
     id: 3,
     title: "Algoritmos mejoran predicción de lesiones",
     date: "13 Oct 2025",
-    image: "/images/viral3.webp",
-    link: "/articulos/prediccion-lesiones",
+    image: "/images/PortadaNoticiaPrediccionLesiones.webp",
+    link: "https://nhsjs.com/2024/injury-prediction-in-sports-a-survey-on-machine-learning-methods/",
   },
 ];
 
